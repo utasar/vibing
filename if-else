@@ -1,0 +1,15 @@
+.ORIG x3000
+
+ADD R2, R0, #-2
+BRnp ELSE 		; if R0 != 2, go to else
+ADD R1, R0, R1
+BRnzp SKIP_ELSE ; if we executed the if statement, skip the else
+
+ELSE
+ADD R0, R0, R0
+
+SKIP_ELSE HALT
+
+ADDR .FILL x8000
+
+.END
