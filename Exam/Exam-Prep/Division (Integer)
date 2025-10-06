@@ -1,0 +1,12 @@
+; R1 / R2 = R3 (quotient)
+AND R3, R3, #0      ; quotient
+ADD R4, R1, #0      ; remainder
+DIV_LOOP
+    NOT R5, R2
+    ADD R5, R5, #1  ; -divisor
+    ADD R6, R4, R5  ; remainder - divisor
+    BRn DIV_DONE
+    ADD R4, R6, #0  ; update remainder
+    ADD R3, R3, #1  ; increment quotient
+    BRnzp DIV_LOOP
+DIV_DONE
