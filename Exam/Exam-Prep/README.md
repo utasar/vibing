@@ -42,3 +42,17 @@ LEA R1, LABEL       ; Load address
 BRnzp LOOP          ; Unconditional branch
 JSR SUBROUTINE      ; Call function
 RET                 ; Return (JMP R7)
+
+
+Essential TRAPs
+GETC (x20) - Read char → R0
+
+OUT (x21) - Output R0[7:0]
+
+PUTS (x22) - Output string (R0=address)
+
+IN (x23) - Input with prompt
+
+HALT (x25) - Stop program
+
+
