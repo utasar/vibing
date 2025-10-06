@@ -1,0 +1,11 @@
+LD R0, VALUE
+BRn NEGATIVE
+BRz ZERO
+; Positive case
+BRnzp DONE
+NEGATIVE
+    ; Negative handling
+    BRnzp DONE
+ZERO
+    ; Zero handling
+DONE
