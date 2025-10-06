@@ -13,3 +13,19 @@
 ## Address Calculation Formulas
 
 ### PC-Relative (LD/ST/LDI/STI/LEA)
+
+
+PCoffset9 = TargetAddress - (CurrentPC + 1)
+
+
+## Memory Map Reference
+- **x0000-x00FF:** Trap Vector Table
+- **x0200-x2FFF:** Operating System
+- **x3000-xFDFF:** User Program Space
+- **xFE00-xFFFF:** Memory-Mapped I/O
+
+## I/O Device Addresses
+- **KBSR:** xFE00 (Keyboard Status)
+- **KBDR:** xFE02 (Keyboard Data)  
+- **DSR:** xFE04 (Display Status)
+- **DDR:** xFE06 (Display Data)
