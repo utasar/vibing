@@ -1,0 +1,11 @@
+; R1 * R2 = R0
+MULTIPLY
+    AND R0, R0, #0  ; result = 0
+    ADD R3, R2, #0  ; counter
+MULT_LOOP
+    BRz DONE_MULT
+    ADD R0, R0, R1  ; add multiplicand
+    ADD R3, R3, #-1 ; decrement counter
+    BRnzp MULT_LOOP
+DONE_MULT
+    RET
