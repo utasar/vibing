@@ -1,0 +1,9 @@
+AND R1, R1, #0      ; counter
+LD R2, COUNT        ; limit
+LOOP
+    ; Your loop body
+    ADD R1, R1, #1  ; increment
+    NOT R3, R2
+    ADD R3, R3, #1  ; -COUNT
+    ADD R3, R1, R3  ; compare
+    BRn LOOP
