@@ -1,0 +1,17 @@
+; Prologue
+ADD R6, R6, #-1    ; Push Return Address
+STR R7, R6, #0
+ADD R6, R6, #-1    ; Push Frame Pointer
+STR R5, R6, #0
+ADD R5, R6, #-1    ; Set new Frame Pointer
+ADD R6, R6, #-n    ; Allocate locals
+
+; Your code here
+
+; Epilogue
+ADD R6, R5, #1     ; Deallocate locals
+LDR R5, R6, #0     ; Restore FP
+ADD R6, R6, #1
+LDR R7, R6, #0     ; Restore RA
+ADD R6, R6, #1
+RET
