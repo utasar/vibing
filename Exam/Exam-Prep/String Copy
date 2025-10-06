@@ -1,0 +1,12 @@
+; Input: R0 = source, R1 = destination
+STRCPY
+    LDR R2, R0, #0
+    BRz STRCPY_DONE
+    STR R2, R1, #0
+    ADD R0, R0, #1
+    ADD R1, R1, #1
+    BRnzp STRCPY
+STRCPY_DONE
+    AND R2, R2, #0
+    STR R2, R1, #0  ; null terminate
+    RET
