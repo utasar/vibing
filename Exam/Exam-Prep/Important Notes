@@ -1,0 +1,24 @@
+PUTS requires null-terminated strings
+
+GETC doesn't echo to screen
+
+IN automatically displays prompt
+
+R7 is overwritten with return address
+
+
+### **File: `Exam-Prep/Code-Snippets.md`**
+```markdown
+# 💡 LC3 Code Snippets - Ready to Use
+
+## Loop Template
+```assembly
+AND R1, R1, #0      ; counter = 0
+LD R2, MAX          ; load limit
+LOOP
+    ; Loop body here
+    ADD R1, R1, #1  ; increment counter
+    NOT R3, R2
+    ADD R3, R3, #1  ; R3 = -MAX
+    ADD R3, R1, R3  ; counter - MAX
+    BRn LOOP        ; continue if counter < MAX
