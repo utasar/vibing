@@ -1,0 +1,12 @@
+LD R0, INPUT
+ADD R0, R0, #-10    ; Compare with 10
+BRn LESS_THAN_10
+BRz EQUAL_TO_10
+; Greater than 10
+BRnzp DONE
+LESS_THAN_10
+    ; < 10 case
+    BRnzp DONE
+EQUAL_TO_10
+    ; = 10 case
+DONE
