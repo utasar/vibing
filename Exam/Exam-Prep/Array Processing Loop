@@ -1,0 +1,11 @@
+LEA R1, ARRAY       ; base address
+AND R2, R2, #0      ; index = 0
+LD R3, SIZE         ; array size
+ARRAY_LOOP
+    LDR R4, R1, R2  ; ARRAY[index]
+    ; Process R4
+    ADD R2, R2, #1  ; next index
+    NOT R5, R3
+    ADD R5, R5, #1  ; -SIZE
+    ADD R5, R2, R5  ; index - SIZE
+    BRn ARRAY_LOOP
