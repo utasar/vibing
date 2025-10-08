@@ -15,7 +15,8 @@ Uppercase Count: 5
 
 You may use the ASCII table to check the ASCII values of the characters entered:
 
-ASCII Table
+ASCII Table<img width="676" height="791" alt="image" src="https://github.com/user-attachments/assets/28faca14-c160-43bc-a793-f4cba92fdea8" />
+
 
 Question 7 options:
 Question 8 (6.25 points) 
