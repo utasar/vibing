@@ -1,3 +1,7 @@
+Picture ani text eutai question ko ho?
+
+
+
 j answer xa tei halnu ma milau xu just answer sumbit hannu k dexa ma herxu k xa i will  manage just 
  
 Write an LC3 assembly program originating at memory address x3000 that will ask the user to type in a string and count the number of uppercase characters then print the count to the display.
