@@ -1,4 +1,5 @@
 Picture ani text eutai question ko ho?
+Question 7 options vitra question 8 vanxa ta k ho
 
 
 
