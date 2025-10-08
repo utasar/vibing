@@ -46,7 +46,6 @@ Please enter second digit: 3
 
 
 **Question 7**
-
 .ORIG x3000
         
 ; Main loop - process multiple strings
@@ -143,10 +142,6 @@ NEG_Z       .FILL #-90      ; Negative of 'Z' (x5A)
 ASCII_OFF   .FILL #48       ; ASCII offset ('0')
 
         .END
-
-
-
-        **Question 8**
 
         
 
