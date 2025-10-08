@@ -1,4 +1,4 @@
-Picture ani text eutai question ko ho?
+Picture ani text eutai question ko ho? j answer dey ni halnu tw k xa tya
 Question 7 options vitra question 8 vanxa ta k ho
 
 
@@ -41,4 +41,5 @@ Please enter second digit: 4
 9 is greater than 4
 Please enter first digit: 3
 Please enter second digit: 3
-3 is equal to 3
+3 is equal to 3<img width="732" height="443" alt="image" src="https://github.com/user-attachments/assets/b35146f1-c40a-42fa-8db7-87c540cbed54" />
+
