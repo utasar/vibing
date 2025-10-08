@@ -143,5 +143,117 @@ ASCII_OFF   .FILL #48       ; ASCII offset ('0')
 
         .END
 
+
+**Question 8**
+
+.ORIG x3000
+
+MAIN    LEA R0, PROMPT1         ; Load address of first prompt
+        PUTS                    ; Display "Please enter first digit: "
         
+        GETC                    ; Read first digit from user
+        OUT                     ; Echo the character
+        
+        LD R1, ASCII_OFFSET     ; Load -48 to convert ASCII to integer
+        ADD R2, R0, R1          ; R2 = first digit as integer
+        
+        LD R0, NEWLINE          ; Load newline character
+        OUT                     ; Print newline
+        
+        LEA R0, PROMPT2         ; Load address of second prompt
+        PUTS                    ; Display "Please enter second digit: "
+        
+        GETC                    ; Read second digit from user
+        OUT                     ; Echo the character
+        
+        LD R1, ASCII_OFFSET     ; Load -48 to convert ASCII to integer
+        ADD R3, R0, R1          ; R3 = second digit as integer
+        
+        LD R0, NEWLINE          ; Load newline character
+        OUT                     ; Print newline
+        
+        ; Compare the two numbers
+        NOT R4, R3              ; R4 = NOT(R3)
+        ADD R4, R4, #1          ; R4 = -R3 (two's complement)
+        ADD R4, R2, R4          ; R4 = R2 - R3
+        
+        BRn LESS_THAN           ; If negative, first < second
+        BRz EQUAL               ; If zero, first == second
+        BRp GREATER_THAN        ; If positive, first > second
+
+LESS_THAN
+        ADD R0, R2, #0          ; Move first digit to R0
+        LD R1, ASCII_OFFSET     ; Load -48
+        NOT R1, R1              ; NOT(-48) = 47
+        ADD R1, R1, #1          ; 47 + 1 = 48
+        ADD R0, R0, R1          ; Convert to ASCII
+        OUT                     ; Print first digit
+        
+        LEA R0, MSG_LESS        ; Load " is less than "
+        PUTS
+        
+        ADD R0, R3, #0          ; Move second digit to R0
+        LD R1, ASCII_OFFSET     ; Load -48
+        NOT R1, R1              ; Convert back to positive
+        ADD R1, R1, #1
+        ADD R0, R0, R1          ; Convert to ASCII
+        OUT                     ; Print second digit
+        
+        LD R0, NEWLINE
+        OUT
+        BR MAIN                 ; Loop back to start
+
+GREATER_THAN
+        ADD R0, R2, #0          ; Move first digit to R0
+        LD R1, ASCII_OFFSET
+        NOT R1, R1
+        ADD R1, R1, #1
+        ADD R0, R0, R1          ; Convert to ASCII
+        OUT
+        
+        LEA R0, MSG_GREATER     ; Load " is greater than "
+        PUTS
+        
+        ADD R0, R3, #0          ; Move second digit to R0
+        LD R1, ASCII_OFFSET
+        NOT R1, R1
+        ADD R1, R1, #1
+        ADD R0, R0, R1          ; Convert to ASCII
+        OUT
+        
+        LD R0, NEWLINE
+        OUT
+        BR MAIN                 ; Loop back to start
+
+EQUAL   ADD R0, R2, #0          ; Move first digit to R0
+        LD R1, ASCII_OFFSET
+        NOT R1, R1
+        ADD R1, R1, #1
+        ADD R0, R0, R1          ; Convert to ASCII
+        OUT
+        
+        LEA R0, MSG_EQUAL       ; Load " is equal to "
+        PUTS
+        
+        ADD R0, R3, #0          ; Move second digit to R0
+        LD R1, ASCII_OFFSET
+        NOT R1, R1
+        ADD R1, R1, #1
+        ADD R0, R0, R1          ; Convert to ASCII
+        OUT
+        
+        LD R0, NEWLINE
+        OUT
+        BR MAIN                 ; Loop back to start
+
+; Data section
+PROMPT1         .STRINGZ "Please enter first digit: "
+PROMPT2         .STRINGZ "Please enter second digit: "
+MSG_LESS        .STRINGZ " is less than "
+MSG_GREATER     .STRINGZ " is greater than "
+MSG_EQUAL       .STRINGZ " is equal to "
+ASCII_OFFSET    .FILL #-48      ; To convert ASCII '0'-'9' to 0-9
+NEWLINE         .FILL x000A     ; Newline character
+
+                .END
 
