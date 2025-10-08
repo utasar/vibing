@@ -93,3 +93,42 @@ Please enter second digit: 3
 3 is equal to 3
 Question 8 options:
 
+
+
+OK!
+
+I'll help you work through these questions about computer architecture and LC3 assembly programming.
+
+## Question 1
+**True**
+
+Immediate addressing mode means the operand value is contained directly within the instruction itself, rather than requiring a memory access.
+
+## Question 2
+**False**
+
+While the LC3 doesn't have a hardware multiply instruction, multiplication can still be implemented in software using repeated addition in a loop. The compiler can generate this code automatically.
+
+## Question 3
+**trap vector table**
+
+The trap vector table stores the starting addresses of trap service routines, indexed by the trap vector.
+
+## Question 4
+**a label being referenced before it is defined in your assembly code**
+
+Two-pass assembly solves the forward reference problem. The first pass builds the symbol table with all labels and their addresses, and the second pass resolves all references.
+
+## Question 5
+Overflow in binary addition occurs when the result of adding two numbers is too large to be represented within the fixed number of bits available. This can cause incorrect results, as the actual mathematical value differs from the stored value, leading to logic errors in programs that rely on accurate arithmetic.
+
+## Question 6
+High-level languages like C need to be compiled because computers can only execute machine code instructions specific to their processor architecture. The compiler translates human-readable C code into the binary machine language instructions that the CPU can directly execute.
+
+## Question 7
+
+Not compiling. What do to? Getting error
+
+## Question 8
+
+Not compiling.
