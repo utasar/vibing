@@ -1,0 +1,112 @@
+
+
+Address Data Notes Stack Pointer Frame Pointer
+5F9C
+5F9D
+5F9E
+5F9F
+5FA0
+5FA1
+5FA2
+5FA3
+5FA4
+5FA5
+5FA6
+5FA7
+5FA8
+5FA9
+5FAA
+5FAB
+5FAC
+5FAD
+5FAE
+5FAF
+5FB0
+5FB1
+5FB2
+5FB3
+5FB4
+5FB5
+5FB6
+5FB7
+5FB8
+5FB9
+5FBA
+5FBB
+5FBC
+5FBD
+5FBE
+5FBF
+5FC0
+5FC1
+5FC2
+5FC3
+5FC4
+5FC5
+5FC6
+5FC7
+5FC8
+5FC9
+5FCA
+5FCB
+5FCC
+5FCD
+5FCE
+5FCF
+5FD0
+5FD1
+5FD2 R3 save R3
+int factorial(0)
+5FD3 R2 save R2
+5FD4 R1 save R1
+5FD5 R5 previous frame pointer
+5FD6 x#### return address for factorial
+5FD7 x0000 int n
+int factorial(1)
+5FD8 R3 save R3
+5FD9 R2 save R2
+5FDA R1 save R1
+5FDB R5 previous frame pointer
+5FDC x#### return address for factorial
+5FDD x0001 int n
+int factorial(2)
+5FDE R3 save R3
+5FDF R2 save R2
+5FE0 R1 save R1
+5FE1 R5 previous frame pointer
+5FE2 x#### return address for factorial
+5FE3 x0002 int n
+int factorial(3)
+5FE4 R3 save R3
+5FE5 R2 save R2
+5FE6 R1 save R1
+5FE7 R5 previous frame pointer
+5FE8 x#### return address for factorial
+5FE9 x0003 int n
+int factorial(4)
+5FEA R3 save R3
+5FEB R2 save R2
+5FEC R1 save R1
+5FED R5 previous frame pointer
+5FEE x#### return address for factorial
+5FEF x0004 int n
+int factorial(5)
+5FF0 R3 save R3
+5FF1 R2 save R2
+5FF2 R1 save R1
+5FF3 R5 previous frame pointer
+5FF4 x#### return address for factorial
+5FF5 x0005 int n
+int factorial(6)
+5FF6 R3 save R3
+5FF7 R2 save R2
+5FF8 R1 save R1
+5FF9 x5FFF previous frame pointer
+5FFA x#### return address for factorial int factorial(6)
+5FFB x0006 int n
+int main()
+5FFC x#### int y <- R6
+5FFD x0006 int x
+5FFE R0 save R0
+5FFF R5 previous frame pointer <- R5
+6000 x#### return address for main
