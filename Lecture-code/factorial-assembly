@@ -1,0 +1,130 @@
+.ORIG x3000
+; mains return address
+LD R6, STACK_BOTTOM			; R6 = x6000
+STR R7, R6, #0
+
+; previous frame pointer
+ADD R6, R6, #-1				; R6 = x5FFF
+STR R5, R6, #0
+ADD R5, R6, #0				; R5 = x5FFF
+
+; save R0
+ADD R6, R6, #-1				; R6 = x5FFE
+STR R0, R6, #0
+
+; int x = 6
+ADD R6, R6, #-1				; R6 = x5FFD
+LD R0, INIT_X				; R0 = int x = 6
+STR R0, R6, #0
+
+; int y
+ADD R6, R6, #-1				; R6 = x5FFC
+
+; int n = x = 6
+ADD R6, R6, #-1				; R6 = x5FFB
+STR R0, R6, #0
+
+JSR FACTORIAL
+
+; pop int n
+ADD R6, R6, #1				; R6 = x5FFC
+
+; int y = factorial(x);
+STR R0, R5, #-3
+
+; return 0;
+AND R0, R0, #0
+
+; pop int y, int x, R0
+ADD R6, R6, #3				; R6 = x5FFF
+
+; pop previous frame pointer
+LDR R5, R6, #0
+ADD R6, R6, #1				; R6 = x6000
+
+; pop return address
+LDR R7, R6, #0
+
+HALT
+
+STACK_BOTTOM .FILL x6000
+INIT_X .FILL #6
+
+FACTORIAL
+; factorials return address
+ADD R6, R6, #-1				; R6 = x5FFA
+STR R7, R6, #0
+
+; previous frame pointer
+ADD R6, R6, #-1				; R6 = x5FF9
+STR R5, R6, #0
+ADD R5, R6, #0				; R5 = x5FF9
+
+; save R1
+ADD R6, R6, #-1				; R6 = x5FF8
+STR R1, R6, #0
+
+; save R2
+ADD R6, R6, #-1				; R6 = x5FF7
+STR R2, R6, #0
+
+; save R3
+ADD R6, R6, #-1				; R6 = x5FF6
+STR R3, R6, #0
+
+; if (n == 0)
+LDR R1, R5, #2				; R1 = int n = 6
+BRnp GENERAL_CASE
+; Base case
+AND R0, R0, #0
+ADD R0, R0, #1				; R0 = 1
+BRnzp POP
+GENERAL_CASE
+
+; factorial(n - 1);
+; int n = n - 1 = 5
+ADD R6, R6, #-1				; R6 = x5FF5
+ADD R1, R1, #-1				; R1 = n - 1 = 5
+STR R1, R6, #0
+
+JSR FACTORIAL
+
+; pop int n - 1
+ADD R6, R6, #1				; R6 = x5FF6
+
+; R0 = factorial(n - 1);
+LDR R1, R5, #2				; R1 = int n = 6
+AND R2, R2, #0				; R2 = 0
+
+; R2 = R1 * R0 = n * factorial(n - 1)
+MULTIPLY
+ADD R2, R2, R0
+ADD R1, R1, #-1
+BRp MULTIPLY
+
+ADD R0, R2, #0				; R0 = R2 = n * factorial(n - 1)
+
+POP
+; pop R3
+LDR R3, R6, #0
+ADD R6, R6, #1				; R6 = x5FF7
+
+; pop R2
+LDR R2, R6, #0
+ADD R6, R6, #1				; R6 = x5FF8
+
+; pop R1
+LDR R1, R6, #0
+ADD R6, R6, #1				; R6 = x5FF9
+
+; pop R5
+LDR R5, R6, #0
+ADD R6, R6, #1				; R6 = x5FFA
+
+; pop R7
+LDR R7, R6, #0
+ADD R6, R6, #1				; R6 = x5FFB
+
+RET
+
+.END
