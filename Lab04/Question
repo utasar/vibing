@@ -1,0 +1,220 @@
+Quiz 7 - partitions & filesystems
+
+Your work has been saved and submittedYour work has been saved and submitted
+Written Oct 23, 2025 1:55 PM - Oct 23, 2025 2:12 PMAttempt 1 of 2
+Attempt Score	
+12 / 13 - 92.31 %
+Overall Grade (Highest Attempt)	
+12 / 13 - 92.31 %
+Question 1 (Bonus)		0 / 1 point
+No tricks - how are you doing?
+
+i am doing good. What about you. ?
+This question has not been graded.
+Question 2		1 / 1 point
+Which command-line utilities can view and manage partition tables in Linux systems?
+
+Question options:
+Selected
+gdisk
+
+Selected
+fdisk
+
+Selected
+parted
+
+Unselected
+Get-PartitionTable
+
+Unselected
+Disk Manager
+
+Question 3		1 / 1 point
+What is a partition table in the context of computer systems?
+
+Question options:
+Unselected
+It is a table that lists all the users in a system
+
+Unselected
+It is a table that manages CPU partitions
+
+Selected
+It is a table that stores information about disk partitions
+
+Unselected
+It is a table that tracks network partitions
+
+Question 4		2 / 2 points
+Select the facts about each partition table type.
+
+__1__	
+Separately stores the bootloader on an EFI partition.  Redundantly stores the partition table itself.
+
+__2__	
+Master Boot Record
+
+__2__	
+Common to BIOS based motherboards
+
+__2__	
+Supports a maximum of 4 primary partitions
+
+__1__	
+GUID (Globally Unique IDentifier) Partition Table
+
+__1__	
+Supports disk sizes greater than 2 TB
+
+__1__	
+Supports up to 128 partitions
+
+__1__	
+Common to UEFI based motherboards
+
+__2__	
+Support disks sizes less than 2 TB
+
+__2__	
+Stored in first sector (512 bytes) of a disk
+
+1.	
+GPT
+
+2.	
+MBR
+
+Question 5		1 / 1 point
+In the context of disks, what is a partition? 
+
+Question options:
+Selected
+A section of a hard disk or storage device
+
+Unselected
+A type of computer virus
+
+Unselected
+A system to organize file names and permissions
+
+Unselected
+A platter on a mechanical disk
+
+Question 6		1 / 1 point
+Correctly order the unit sizes of data from smallest to largest
+
+__4__	megabyte
+__1__	bit
+__3__	kilobyte
+__6__	terabyte
+__2__	byte
+__5__	gigabyte
+Question 7		1 / 1 point
+What is fragmentation in the context of filesystems?
+
+Question options:
+Selected
+The process of files becoming scattered across a disk
+
+Unselected
+The process of organizing files sequentially
+
+Unselected
+The process of compressing files
+
+Unselected
+The process of encrypting files
+
+Question 8		1 / 1 point
+Which filesystem is commonly used in macOS and OS X?
+
+Question options:
+Unselected
+Ext4
+
+Selected
+HFS+
+
+Unselected
+NTFS
+
+Unselected
+FAT32
+
+Question 9		1 / 1 point
+Which filesystem is commonly used in Windows operating systems?
+
+Question options:
+Selected
+NTFS
+
+Unselected
+Ext4
+
+Unselected
+FAT32
+
+Unselected
+HFS+
+
+Question 10		1 / 1 point
+Which filesystem is commonly used in Linux operating systems?
+
+Question options:
+Unselected
+NTFS
+
+Selected
+Ext4
+
+Unselected
+HFS+
+
+Unselected
+FAT32
+
+Question 11		0 / 1 point
+All filesystems store metadata, such as user / group ownership and permissions as well as created and modified dates
+
+Question options:
+Selected
+True
+Unselected
+False
+Question 12		1 / 1 point
+Once a file is removed from the filesystem, using a command like `rm`, it can no longer be read from the disk - the data is automatically overwritten on the disk.
+
+Question options:
+Unselected
+True
+Selected
+False
+Question 13		1 / 1 point
+Select the information that inodes store
+
+Question options:
+Selected
+File links (hard links) pointing to the inode
+
+Unselected
+Path to the file
+
+Selected
+File permissions
+
+Unselected
+File contents
+
+Selected
+File size
+
+Unselected
+File name
+
+Selected
+File pointers to data blocks on the disk where the actual file contents are stored
+
+Selected
+Last file access & file creation time
+
