@@ -1,0 +1,48 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int fibonacci(int n);
+
+int numberOfCalls = 0;
+
+int fibCache[100] = {-1};
+
+int main()
+{
+    for (int i = 0; i < 100; i++)
+    {
+        fibCache[i] = -1;
+    }
+    
+    fibonacci(15);
+    
+    printf("fibonacci(n) was called %d times.\n", numberOfCalls);
+    return 0;
+}
+
+int fibonacci(int n)
+{
+    printf("fibonacci(%d) was called...\n", n);
+    numberOfCalls++;
+    
+    if (fibCache[n] != -1)
+    {
+        return fibCache[n];
+    }
+    
+    if(n <= 1)
+    {
+        printf("fibonacci(%d) returned a value of %d\n", n, n);
+        fibCache[n] = n;
+        return n;
+    }
+    else
+    {
+        int n1 = fibonacci(n-1);
+		int n2 = fibonacci(n-2);
+		
+		printf("fibonacci(%d) returned a value of %d\n", n, n1 + n2);
+		fibCache[n] = n1 + n2;
+        return n1 + n2;
+    }
+}
