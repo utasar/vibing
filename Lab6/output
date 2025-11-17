@@ -1,0 +1,104 @@
+Available options:
+p - Print linked list
+a - Add value to linked list
+r - Remove value from linked list
+q - Quit
+Choose an option: p
+
+Available options:
+p - Print linked list
+a - Add value to linked list
+r - Remove value from linked list
+q - Quit
+Choose an option: a
+Type a number to add: 10
+Available options:
+p - Print linked list
+a - Add value to linked list
+r - Remove value from linked list
+q - Quit
+Choose an option: a
+Type a number to add: 20
+Available options:
+p - Print linked list
+a - Add value to linked list
+r - Remove value from linked list
+q - Quit
+Choose an option: a
+Type a number to add: 30
+Available options:
+p - Print linked list
+a - Add value to linked list
+r - Remove value from linked list
+q - Quit
+Choose an option: a
+Type a number to add: 40
+Available options:
+p - Print linked list
+a - Add value to linked list
+r - Remove value from linked list
+q - Quit
+Choose an option: a
+Type a number to add: 50
+Available options:
+p - Print linked list
+a - Add value to linked list
+r - Remove value from linked list
+q - Quit
+Choose an option: a
+Type a number to add: 60
+Available options:
+p - Print linked list
+a - Add value to linked list
+r - Remove value from linked list
+q - Quit
+Choose an option: p
+10 -> 20 -> 30 -> 40 -> 50 -> 60
+Available options:
+p - Print linked list
+a - Add value to linked list
+r - Remove value from linked list
+q - Quit
+Choose an option: r
+Type a number to remove: 10
+Available options:
+p - Print linked list
+a - Add value to linked list
+r - Remove value from linked list
+q - Quit
+Choose an option: p
+20 -> 30 -> 40 -> 50 -> 60
+Available options:
+p - Print linked list
+a - Add value to linked list
+r - Remove value from linked list
+q - Quit
+Choose an option: r
+Type a number to remove: 60
+Available options:
+p - Print linked list
+a - Add value to linked list
+r - Remove value from linked list
+q - Quit
+Choose an option: p
+20 -> 30 -> 40 -> 50
+Available options:
+p - Print linked list
+a - Add value to linked list
+r - Remove value from linked list
+q - Quit
+Choose an option: r
+Type a number to remove: 30
+Available options:
+p - Print linked list
+a - Add value to linked list
+r - Remove value from linked list
+q - Quit
+Choose an option: p
+20 -> 40 -> 50
+Available options:
+p - Print linked list
+a - Add value to linked list
+r - Remove value from linked list
+q - Quit
+Choose an option: q
