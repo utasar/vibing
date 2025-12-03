@@ -1,0 +1,305 @@
+; Sample Code for Lab 6
+; This sample code implements the int main() function
+
+.ORIG x3000
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; int main()
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Main's return value
+LD R6, STACK_BASE		; R6 = x6000
+
+; Main's return address
+ADD R6, R6, #-1			; R6 = x5FFF
+STR R7, R6, #0
+
+; Previous frame pointer
+ADD R6, R6, #-1			; R6 = x5FFE
+STR R5, R6, #0
+
+; Set frame pointer
+ADD R5, R6, #0			; R5 = R6 = x5FFE
+
+; node_t *head
+ADD R6, R6, #-1			; R6 = x5FFD
+AND R0, R0, #0			; R0 = 0
+STR R0, R6, #0
+
+; char selection
+ADD R6, R6, #-1			; R6 = x5FFC
+LD R0, LOWERCASE_S		; R0 = 's'
+STR R0, R6, #0
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; while(selection != 'q')
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Perform the check for the while loop
+; We check to see if char selection is equal to 'q'
+; If equal, quit
+; It not equal, continue running the loop
+CHECK_WHILE
+LDR R0, R5, #-2			; R0 = char selection
+LD R1, LOWERCASE_Q
+NOT R1, R1
+ADD R1, R1, #1
+ADD R1, R0, R1
+BRz BREAK_WHILE_LOOP
+
+; Print the options menu
+LEA R0, PROMPT_MENU
+PUTS
+
+; Get a character from the keyboard and put it in selection
+; (We don't have to write our own scanf() function)
+GETC
+STR R0, R5, #-2			; Store the character on the runtime stack in char selection (R0 = char selection)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; if(selection == 'p')
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Check if char selection is equal to 'p'
+LD R1, LOWERCASE_P
+NOT R1, R1
+ADD R1, R1, #1
+ADD R1, R0, R1
+BRnp ELSE_IF_A			; If not equal to 'p' check 'a'
+
+; Display prompt
+LEA R0, PROMPT_PRINT
+PUTS
+
+; node_t **head (&head) (input to printList())
+ADD R6, R6, #-1			; R6 = x5FFA
+ADD R0, R5, #-1			; R0 = &head = x5FFD
+STR R0, R6, #0
+
+; printList's return value
+ADD R6, R6, #-1            ; R6 = x5FF9
+
+JSR PRINT_LIST
+
+; Pop return value (void)
+ADD R6, R6, #1			; R6 = x5FFA
+
+; Pop node_t **head
+ADD R6, R6, #1			; R6 = x5FFB
+
+BRnzp CONTINUE_WHILE_LOOP
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; else if(selection == 'a')
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Check if char selection is equal to 'a'
+ELSE_IF_A
+LD R1, LOWERCASE_A
+NOT R1, R1
+ADD R1, R1, #1
+ADD R1, R0, R1
+BRnp ELSE_IF_R
+
+; int a
+ADD R6, R6, #-1			; R6 = x5FFB
+AND R0, R0, #0
+STR R0, R6, #0
+
+; Display prompt
+LEA R0, PROMPT_ADD
+PUTS
+
+; Call TRAP service routine for getting number here
+; TRAP x40 ; INPUT
+; For testing purposes, let's use 12
+AND R0, R0, #0			; Comment this out after implementing your TRAP service routine
+ADD R0, R0, #12			; Comment this out after implementing your TRAP service routine
+
+; Store number entered into int a
+STR R0, R5, #-3
+
+; node_t **head (&head) (input to addValue())
+ADD R6, R6, #-1			; R6 = x5FFA
+ADD R0, R5, #-1			; R0 = &head = x5FFD
+STR R0, R6, #0
+
+; int added (a) (input to addValue())
+ADD R6, R6, #-1			; R6 = x5FF9
+LDR R0, R5, #-3
+STR R0, R6, #0
+
+; addValue's return value
+ADD R6, R6, #-1         ; R6 = x5FF8
+
+JSR ADD_VALUE
+
+; Pop return value (void)
+ADD R6, R6, #1			; R6 = x5FF9
+
+; Pop int added
+ADD R6, R6, #1			; R6 = x5FFA
+
+; Pop node_t **head
+ADD R6, R6, #1			; R6 = x5FFB
+
+; Pop int a
+ADD R6, R6, #1			; R6 = x5FFC
+
+BRnzp CONTINUE_WHILE_LOOP
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; else if(selection == 'r')
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Check if char selection is equal to 'r'
+ELSE_IF_R
+LD R1, LOWERCASE_R
+NOT R1, R1
+ADD R1, R1, #1
+ADD R1, R0, R1
+BRnp CONTINUE_WHILE_LOOP
+
+; int r
+ADD R6, R6, #-1			; R6 = x5FFB
+AND R0, R0, #0
+STR R0, R6, #0
+
+; Display prompt
+LEA R0, PROMPT_REMOVE
+PUTS
+
+; Call TRAP service routine for getting number here
+; TRAP x40 ; INPUT
+; For testing purposes, let's use 12
+AND R0, R0, #0			; Comment this out after implementing your TRAP service routine
+ADD R0, R0, #12			; Comment this out after implementing your TRAP service routine
+
+; Store number entered into int r
+STR R0, R5, #-3
+
+; node_t **head (&head) (input to removeValue())
+ADD R6, R6, #-1			; R6 = x5FFA
+ADD R0, R5, #-1			; R0 = &head = x5FFD
+STR R0, R6, #0
+
+; int removed (r) (input to removeValue())
+ADD R6, R6, #-1			; R6 = x5FF9
+LDR R0, R5, #-3
+STR R0, R6, #0
+
+; removeValue's return value
+ADD R6, R6, #-1         ; R6 = x5FF8
+
+JSR REMOVE_VALUE
+
+; Pop return value (void)
+ADD R6, R6, #1			; R6 = x5FF9
+
+; Pop int removed
+ADD R6, R6, #1			; R6 = x5FFA
+
+; Pop node_t **head
+ADD R6, R6, #1			; R6 = x5FFB
+
+; Pop int r
+ADD R6, R6, #1			; R6 = x5FFC
+
+BRnzp CONTINUE_WHILE_LOOP
+
+; Loop back to check the while loop condition again
+CONTINUE_WHILE_LOOP
+BRnzp CHECK_WHILE
+
+BREAK_WHILE_LOOP
+
+; Pop local variables in main
+ADD R6, R6, #2			; R6 = x5FFE
+
+; Pop previous frame pointer
+LDR R5, R6, #0
+ADD R6, R6, #1			; R6 = x5FFF
+
+; Pop return address
+LDR R7, R6, #0
+ADD R6, R6, #1			; R6 = x6000
+
+HALT
+
+STACK_BASE .FILL x6000
+LIST_BASE .FILL x8000
+
+LOWERCASE_A .FILL x0061
+LOWERCASE_P .FILL x0070
+LOWERCASE_Q .FILL x0071
+LOWERCASE_R .FILL x0072
+LOWERCASE_S .FILL x0073
+
+PROMPT_MENU .STRINGz 	"Available options:\np - Print linked list\na - Add value to linked list\nr - Remove value from linked list\nq - Quit\nChoose an option: "
+PROMPT_PRINT .STRINGz 	"\nContents of the linked list: \n"
+PROMPT_ADD .STRINGz 	"\nType a number to add: \n"
+PROMPT_REMOVE .STRINGz 	"\nType a number to remove: \n"
+
+; void printList(node_t **head)
+PRINT_LIST
+ADD R6, R6, #-1 ; push return address
+STR R7, R6, #0
+
+ADD R6, R6, #-1 ; push previous frame pointer
+STR R5, R6, #0
+ADD R5, R6, #0 ; set frame pointer
+
+; TODO: printList implementation
+ADD R6, R6, #-1 ; push node_t *current
+
+AND R0, R0, #0
+ADD R0, R0, #15
+ADD R0, R0, #15
+ADD R0, R0, #15
+TRAP x41 ; OUTPUT
+
+ADD R6, R6, #1 ; pop *current
+
+LDR R5, R6, #0 
+ADD R6, R6, #1 ; pop previous frame pointer
+
+LDR R7, R6, #0
+ADD R6, R6, #1 ; pop return address
+RET
+
+; void addValue(node_t **head, int added)
+ADD_VALUE
+ADD R6, R6, #-1 ; push return address
+STR R7, R6, #0
+
+ADD R6, R6, #-1 ; push previous frame pointer
+STR R5, R6, #0
+ADD R5, R6, #0 ; set frame pointer
+
+; TODO: addValue implementation
+
+LDR R5, R6, #0 
+ADD R6, R6, #1 ; pop previous frame pointer
+
+LDR R7, R6, #0
+ADD R6, R6, #1 ; pop return address
+RET
+
+; void removeValue(node_t **head, int removed)
+REMOVE_VALUE
+ADD R6, R6, #-1 ; push return address
+STR R7, R6, #0
+
+ADD R6, R6, #-1 ; push previous frame pointer
+STR R5, R6, #0
+ADD R5, R6, #0 ; set frame pointer
+
+; TODO: removeValue implementation
+
+LDR R5, R6, #0 
+ADD R6, R6, #1 ; pop previous frame pointer
+
+LDR R7, R6, #0
+ADD R6, R6, #1 ; pop return address
+RET
+
+.END
