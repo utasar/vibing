@@ -1,0 +1,6 @@
+file trap.obj
+dump x0040 x0042
+file input.obj
+file output.obj
+file main.obj
+c
