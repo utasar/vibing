@@ -1,0 +1,130 @@
+.ORIG x3000
+; mains return addr
+LD R6, STACK_BOTTOM		; R6 = x6000
+STR R7, R6, #0
+
+; prev frame pointer
+ADD R6, R6, #-1			; R6 = x5FFF
+STR R5, R6, #0
+
+; set the current frame pointer
+ADD R5, R6, #0			; R5 = x5FFF
+
+; R0
+ADD R6, R6, #-1			; R6 = x5FFE
+STR R0, R6, #0
+
+; int x
+ADD R6, R6, #-1			; R6 = x5FFD
+AND R0, R0, #0
+ADD R0, R0, #2
+STR R0, R6, #0
+
+; int y
+ADD R6, R6, #-1			; R6 = x5FFC
+AND R0, R0, #0
+ADD R0, R0, #4
+STR R0, R6, #0
+
+; int z
+ADD R6, R6, #-1			; R6 = x5FFB
+AND R0, R0, #0
+ADD R0, R0, #7
+STR R0, R6, #0
+
+JSR volume
+
+ADD R6, R6, #3			; R6 = x5FFE
+
+;LDR R0, R6, #0
+ADD R6, R6, #1			; R6 = x5FFF
+
+LDR R5, R6, #0
+ADD R6, R6, #1			; R6 = x6000
+
+LDR R7, R6, #0
+
+HALT
+
+STACK_BOTTOM .FILL x6000
+
+volume
+; volume's return addr
+ADD R6, R6, #-1			; R6 = x5FFA
+STR R7, R6, #0
+
+; prev frame pointer
+ADD R6, R6, #-1			; R6 = x5FF9
+STR R5, R6, #0
+
+; set the current frame pointer
+ADD R5, R6, #0			; R5 = x5FF9
+
+; R0
+ADD R6, R6, #-1			; R6 = x5FF8
+STR R0, R6, #0
+
+; R1
+ADD R6, R6, #-1			; R6 = x5FF7
+STR R1, R6, #0
+
+; R2
+ADD R6, R6, #-1			; R6 = x5FF6
+STR R2, R6, #0
+
+; R3
+ADD R6, R6, #-1			; R6 = x5FF5
+STR R3, R6, #0
+
+; int v
+ADD R6, R6, #-1			; R6 = x5FF4
+
+LDR R0, R5, #4			; R0 = int x = 2
+LDR R1, R5, #3			; R1 = int y = 4
+AND R2, R2, #0
+
+; x * y
+FIRST_MULTI
+ADD R2, R1, R2
+ADD R0, R0, #-1
+BRp FIRST_MULTI
+
+LDR R0, R5, #2			; R0 = int z = 7
+ADD R1, R2, #0			; R1 = R2
+AND R2, R2, #0
+
+; x * y * z
+SECOND_MULTI
+ADD R2, R1, R2
+ADD R0, R0, #-1
+BRp SECOND_MULTI
+
+ADD R0, R2, #0			; R0 = x * y * z
+BRp RETURN
+AND R0, R0, #0
+ADD R0, R0, #-1			; R0 = -1
+
+RETURN
+ADD R6, R6, #1			; R6 = x5FF5
+
+LDR R3, R6, #0			
+ADD R6, R6, #1			; R6 = x5FF6
+
+LDR R2, R6, #0			
+ADD R6, R6, #1			; R6 = x5FF7
+
+LDR R1, R6, #0			
+ADD R6, R6, #1			; R6 = x5FF8
+
+;LDR R0, R6, #0			
+ADD R6, R6, #1			; R6 = x5FF9
+
+LDR R5, R6, #0			
+ADD R6, R6, #1			; R6 = x5FFA
+
+LDR R7, R6, #0			
+ADD R6, R6, #1			; R6 = x5FFB
+
+RET
+
+.END
