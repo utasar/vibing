@@ -1,0 +1,46 @@
+; Q27: prompt user for single digit 0..9 and print
+; less than 5 / equal to 5 / greater than 5
+; loops indefinitely
+
+        .ORIG x3000
+
+LOOP
+        LEA  R0, PROMPT
+        PUTS
+
+        GETC
+        OUT
+
+        ; convert ASCII to number by subtracting '0'
+        LD   R2, ASCII_ZERO
+        NOT  R2, R2
+        ADD  R2, R2, #1      ; R2 = -48
+        ADD  R0, R0, R2      ; R0 = digit (0–9)
+
+        ADD  R1, R0, #-5
+        BRn  LESS
+        BRz  EQUAL
+
+; greater than 5
+        LEA  R0, GREATER_MSG
+        PUTS
+        BR   LOOP
+
+LESS
+        LEA  R0, LESS_MSG
+        PUTS
+        BR   LOOP
+
+EQUAL
+        LEA  R0, EQUAL_MSG
+        PUTS
+        BR   LOOP
+
+PROMPT      .STRINGZ "Please enter a number: "
+LESS_MSG    .STRINGZ "The number you entered was less than 5!\n"
+EQUAL_MSG   .STRINGZ "The number you entered was equal to 5!\n"
+GREATER_MSG .STRINGZ "The number you entered was greater than 5!\n"
+
+ASCII_ZERO  .FILL x0030
+
+        .END
