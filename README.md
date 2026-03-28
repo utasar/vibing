@@ -21,7 +21,7 @@ This repository reflects my ability to work across multiple programming paradigm
 
 ## How to Use
 
-1. Clone the repository to your machine:
+1. Clone the repository to your device:
    ```bash
    git clone https://github.com/utasar/vibing.git
    ```
